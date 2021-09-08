@@ -4,4 +4,6 @@
 
 # usage
 
+```node app.js```
+then
 send request to http://localhost:10000/ to mint and publish a NFT

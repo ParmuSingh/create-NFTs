@@ -50,14 +50,14 @@ Web3Handler.prototype.confirmTransaction = async function(fromAirdropSignature) 
   return await this.connection.confirmTransaction(fromAirdropSignature);
 } // confirmTransaction() - end
 
-Web3Handler.prototype.createMint = async function(accountThatPaysFees, NFTMintingAuthority, NFTFreezingAuthority, decimalPoints) {
+Web3Handler.prototype.createMint = async function(accountThatPaysFees, NFTMintingAuthority, NFTFreezingAuthority) {
 
   let mint = await splToken.Token.createMint(
     this.connection,
     accountThatPaysFees,
     NFTMintingAuthority.publicKey,
     NFTFreezingAuthority,
-    decimalPoints,
+    0, // decimalPoints = 0 becuase its a NFT, and not a FT.
     splToken.TOKEN_PROGRAM_ID,
   );
 
@@ -68,7 +68,7 @@ Web3Handler.prototype.createMint = async function(accountThatPaysFees, NFTMintin
 Web3Handler.prototype.revokeMintingPrivileges = async function(token, currentAuthority) {
 
   await token.setAuthority(
-    mint.publicKey, // The account of the token
+    token.publicKey, // The account of the token
     null, // The new authority you want to set.
     "MintTokens", // The type of authority that the account currently has.
     currentAuthority.publicKey, // The public key of the current authority holder.
@@ -87,7 +87,7 @@ Web3Handler.prototype.mintNFT = async function(tokenToMint, mintTo) {
     tokenAccount.address, //who it goes to
     mintTo.publicKey, // minting authority
     [], // multisig
-    1000000000, // how many (of smallest unit)
+    1, // mint 1 token (of smallest unit), because its one token only (assuming minting privileges are revoked) this token is unique and therefore non-fungible.
   );
 
   return result

@@ -4,14 +4,14 @@
     "server-domain": "https://localhost:10001",
     "http-port": 10000,
     "https-port": 10001,
-    "cookie-secret": "C7307C3DDF314AE6FDA8369FB9C49CA85912EF850DB142E06C971F5EBCD8EA7F"
+    "cookie-secret": "cookie-secret"
 
   },
   "prod-settings": {
-    "server-domain": "https://soldirac.com",
+    "server-domain": "https://yournftcreator.com",
     "http-port": 10000,
     "https-port": 10001,
-    "cookie-secret": "2deef17983eeb921cb754e80af786babbf9de681bce315ffb69a1c0b05147fc1"
+    "cookie-secret": "cookie-secret"
 
   }
 }
